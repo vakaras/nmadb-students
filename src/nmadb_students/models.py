@@ -148,9 +148,13 @@ class StudyRelation(models.Model):
         return u'{0.school} ({0.entered}; {0.finished})'.format(self)
 
 
-class Alumni(Student):
+class Alumni(models.Model):
     """ Information about alumni.
     """
+
+    student = models.OneToOneField(
+            Student,
+            )
 
     university = models.CharField(
             max_length=128,
