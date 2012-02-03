@@ -96,6 +96,9 @@ class Student(Human):
     def change_school(self, school, date=None):
         """ Marks, that student from ``date`` study in ``school``.
 
+        .. note::
+            Automatically saves changes.
+
         ``date`` defaults to ``today()``. If student already studies in
         some school, than marks, that he had finished it day before
         ``date``.
@@ -105,11 +108,12 @@ class Student(Human):
         try:
             old_study = StudyRelation.objects.filter(
                     student=self).order_by('entered')[0]
+        except IndexError:
+            pass
+        else:
             if not old_study.finished:
                 old_study.finished = date - datetime.timedelta(1)
                 old_study.save()
-        except School.DoesNotExist:
-            pass
         study = StudyRelation()
         study.student = self
         study.school = school
