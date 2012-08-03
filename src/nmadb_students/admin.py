@@ -148,10 +148,6 @@ class StudentMarkAdmin(utils.ModelAdmin):
             'end',
             )
 
-    list_filter = (
-            'school_type',
-            )
-
     search_fields = (
             'id',
             'student__first_name',
