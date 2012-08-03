@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 
-from django_db_utils import utils
 from nmadb_contacts import admin as contacts_admin
 from nmadb_students import models
 from nmadb_utils import admin as utils
@@ -82,6 +81,11 @@ class StudentAdmin(contacts_admin.HumanAdmin):
     """ Administration for student.
     """
 
+    sheet_mapping = contacts_admin.HumanAdmin.sheet_mapping + (
+            (_(u'Class'), ('current_school_class',)),
+            (_(u'School'), ('current_school',)),
+            )
+
     inlines = contacts_admin.HumanAdmin.inlines + [
             StudyRelationInline,
             #ParentRelationInline,   FIXME: Why doesn't work?
@@ -91,7 +95,72 @@ class StudentAdmin(contacts_admin.HumanAdmin):
             ]
 
 
-class ParentRelationAdmin(admin.ModelAdmin):
+class StudyRelationAdmin(utils.ModelAdmin):
+    """ Administration for study relations.
+    """
+
+    list_display = (
+            'id',
+            'student',
+            'school',
+            'entered',
+            'finished',
+            )
+
+    search_fields = (
+            'id',
+            'student__first_name',
+            'student__last_name',
+            'student__old_last_name',
+            'school__title',
+            )
+
+
+class AlumniAdmin(utils.ModelAdmin):
+    """ Administration for alumnis.
+    """
+
+    list_display = (
+            'id',
+            'student',
+            'university',
+            'study_field',
+            )
+
+    search_fields = (
+            'id',
+            'student__first_name',
+            'student__last_name',
+            'student__old_last_name',
+            'university',
+            'study_field',
+            )
+
+
+class StudentMarkAdmin(utils.ModelAdmin):
+    """ Administration for StudentMark.
+    """
+
+    list_display = (
+            'id',
+            'student',
+            'start',
+            'end',
+            )
+
+    list_filter = (
+            'school_type',
+            )
+
+    search_fields = (
+            'id',
+            'student__first_name',
+            'student__last_name',
+            'student__old_last_name',
+            )
+
+
+class ParentRelationAdmin(utils.ModelAdmin):
     """ Administration for parent relation.
     """
 
@@ -114,3 +183,7 @@ class ParentRelationAdmin(admin.ModelAdmin):
 admin.site.register(models.School, SchoolAdmin)
 admin.site.register(models.Student, StudentAdmin)
 admin.site.register(models.ParentRelation, ParentRelationAdmin)
+admin.site.register(models.StudyRelation, StudyRelationAdmin)
+admin.site.register(models.Alumni, AlumniAdmin)
+admin.site.register(models.SocialDisadvantageMark, StudentMarkAdmin)
+admin.site.register(models.DisabilityMark, StudentMarkAdmin)
