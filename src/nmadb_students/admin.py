@@ -29,12 +29,12 @@ class SchoolAdmin(utils.ModelAdmin):
             )
 
     sheet_mapping = (
-            (_(u'ID'), 'id'),
-            (_(u'Title'), 'title'),
-            (_(u'Type'), 'get_school_type_display'),
-            (_(u'Email'), 'email'),
-            (_(u'Municipality'), 'municipality__title'),
-            (_(u'Municipality code'), 'municipality__code'),
+            (_(u'ID'), ('id',)),
+            (_(u'Title'), ('title',)),
+            (_(u'Type'), ('get_school_type_display',)),
+            (_(u'Email'), ('email',)),
+            (_(u'Municipality'), ('municipality', 'title',)),
+            (_(u'Municipality code'), ('municipality', 'code',)),
             )
 
 
