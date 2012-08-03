@@ -93,6 +93,27 @@ class Student(Human):
             related_name='children',
             )
 
+    @property
+    def current_school_class(self):
+        """ Returns current school class or 13 if finished.
+        """
+        today = datetime.date.today()
+        school_class = self.school_class + today.year - self.school_year
+        if today.month >= 9:
+            school_class += 1
+        if school_class > 12:
+            return 13
+        else:
+            return school_class
+
+    @property
+    def current_school(self):
+        """ Returns current school.
+        """
+        study = StudyRelation.objects.filter(
+                student=self).order_by('entered')[0]
+        return study.school
+
     def change_school(self, school, date=None):
         """ Marks, that student from ``date`` study in ``school``.
 
