@@ -4,9 +4,10 @@ from django.utils.translation import ugettext as _
 from django_db_utils import utils
 from nmadb_contacts import admin as contacts_admin
 from nmadb_students import models
+from nmadb_utils import admin as utils
 
 
-class SchoolAdmin(admin.ModelAdmin):
+class SchoolAdmin(utils.ModelAdmin):
     """ Administration for school.
     """
 
@@ -15,7 +16,6 @@ class SchoolAdmin(admin.ModelAdmin):
             'title',
             'school_type',
             'email',
-            'municipality',
             )
 
     list_filter = (
@@ -26,6 +26,15 @@ class SchoolAdmin(admin.ModelAdmin):
             'id',
             'title',
             'email',
+            )
+
+    sheet_mapping = (
+            (_(u'ID'), 'id'),
+            (_(u'Title'), 'title'),
+            (_(u'Type'), 'get_school_type_display'),
+            (_(u'Email'), 'email'),
+            (_(u'Municipality'), 'municipality__title'),
+            (_(u'Municipality code'), 'municipality__code'),
             )
 
 
