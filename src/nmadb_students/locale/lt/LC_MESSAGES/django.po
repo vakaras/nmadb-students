@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-04 15:12+0300\n"
+"PO-Revision-Date: 2012-08-04 15:12+0300\n"
+"Last-Translator: Vytautas Astrauskas <vastrauskas@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: admin.py:31
+msgid "ID"
+msgstr "ID"
+
+#: admin.py:32
+msgid "Title"
+msgstr "Pavadinimas"
+
+#: admin.py:33
+msgid "Type"
+msgstr "Tipas"
+
+#: admin.py:34
+msgid "Email"
+msgstr "El. paštas"
+
+#: admin.py:35
+msgid "Municipality"
+msgstr "Savivaldybė"
+
+#: admin.py:36
+msgid "Municipality code"
+msgstr "Savivaldybės kodas"
+
+#: admin.py:85
+msgid "Class"
+msgstr "Klasė"
+
+#: admin.py:86
+msgid "School"
+msgstr "Mokykla"
+
+#: models.py:18
+msgid "primary"
+msgstr "pradinė"
+
+#: models.py:19
+msgid "basic"
+msgstr "pagrindinė"
+
+#: models.py:20
+msgid "secondary"
+msgstr "vidurinė"
+
+#: models.py:21
+msgid "gymnasium"
+msgstr "gimnazija"
+
+#: models.py:22
+msgid "progymnasium"
+msgstr "progimnazija"
+
+#: models.py:28
+msgid "title"
+msgstr "pavadinimas"
+
+#: models.py:35
+#: models.py:295
+msgid "type"
+msgstr "tipas"
+
+#: models.py:43
+msgid "email"
+msgstr "el. paštas"
+
+#: models.py:50
+msgid "municipality"
+msgstr "savivaldybė"
+
+#: models.py:55
+#: models.py:167
+msgid "school"
+msgstr "mokykla"
+
+#: models.py:56
+msgid "schools"
+msgstr "mokyklos"
+
+#: models.py:71
+msgid "class"
+msgstr "klasė"
+
+#: models.py:79
+msgid "class update year"
+msgstr "klasės atnaujinimo metai"
+
+#: models.py:81
+msgid "This field value shows, at which year January 3 day student was in school_class."
+msgstr "Šio lauko reikšmė nurodo, kurių metų sausio 3 dieną mokinys buvo school_class lauke nurodytoje klasėje."
+
+#: models.py:89
+msgid "comment"
+msgstr "komentaras"
+
+#: models.py:114
+msgid "current class"
+msgstr "dabartinė klasė"
+
+#: models.py:122
+msgid "current school"
+msgstr "dabartinė mokykla"
+
+#: models.py:152
+#: models.py:162
+#: models.py:195
+#: models.py:229
+msgid "student"
+msgstr "mokinys"
+
+#: models.py:153
+msgid "students"
+msgstr "mokiniai"
+
+#: models.py:171
+msgid "entered"
+msgstr "įstojo"
+
+#: models.py:177
+msgid "finished"
+msgstr "baigė"
+
+#: models.py:182
+msgid "study relation"
+msgstr "mokymasis"
+
+#: models.py:183
+msgid "study relations"
+msgstr "mokymasis"
+
+#: models.py:202
+msgid "university"
+msgstr "universitetas"
+
+#: models.py:209
+msgid "study field"
+msgstr "studijų sritis"
+
+#: models.py:215
+msgid "notes"
+msgstr "pastabos"
+
+#: models.py:219
+msgid "alumni"
+msgstr "absolventas"
+
+#: models.py:220
+msgid "alumnis"
+msgstr "absolventai"
+
+#: models.py:233
+msgid "start"
+msgstr "pradžia"
+
+#: models.py:239
+msgid "end"
+msgstr "pabaiga"
+
+#: models.py:254
+msgid "social disadvantage mark"
+msgstr "socialinio remtinumo požymis"
+
+#: models.py:255
+msgid "social disadvantage marks"
+msgstr "socialinio remtinumo požymiai"
+
+#: models.py:264
+msgid "disability"
+msgstr "negalia"
+
+#: models.py:268
+msgid "disability mark"
+msgstr "negalios požymis"
+
+#: models.py:269
+msgid "disability marks"
+msgstr "negalių požymiai"
+
+#: models.py:277
+#: models.py:289
+msgid "parent"
+msgstr "tėvas"
+
+#: models.py:278
+msgid "tutor"
+msgstr "globėjas"
+
+#: models.py:284
+msgid "child"
+msgstr "vaikas"
+
+#: models.py:302
+msgid "parent relation"
+msgstr "tėvystės ryšys"
+
+#: models.py:303
+msgid "parent relations"
+msgstr "tėvystės ryšiai"
+

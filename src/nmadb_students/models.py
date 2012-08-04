@@ -2,7 +2,7 @@ import datetime
 
 from django.db import models
 from django.core import validators
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from nmadb_contacts.models import Municipality, Human
 
@@ -25,12 +25,14 @@ class School(models.Model):
     title = models.CharField(
             max_length=80,
             unique=True,
+            verbose_name=_(u'title'),
             )
 
     school_type = models.PositiveSmallIntegerField(
             choices=SCHOOL_TYPES,
             blank=True,
             null=True,
+            verbose_name=_(u'type'),
             )
 
     email = models.EmailField(
@@ -38,16 +40,20 @@ class School(models.Model):
             unique=True,
             blank=True,
             null=True,
+            verbose_name=_(u'email'),
             )
 
     municipality = models.ForeignKey(
             Municipality,
             blank=True,
             null=True,
+            verbose_name=_(u'municipality'),
             )
 
     class Meta(object):
         ordering = [u'title',]
+        verbose_name=_(u'school')
+        verbose_name_plural=_(u'schools')
 
     def __unicode__(self):
         return unicode(self.title)
@@ -80,6 +86,7 @@ class Student(Human):
     comment = models.TextField(
             blank=True,
             null=True,
+            verbose_name=_(u'comment'),
             )
 
     schools = models.ManyToManyField(
@@ -93,7 +100,6 @@ class Student(Human):
             related_name='children',
             )
 
-    @property
     def current_school_class(self):
         """ Returns current school class or 13 if finished.
         """
@@ -105,14 +111,15 @@ class Student(Human):
             return 13
         else:
             return school_class
+    current_school_class.short_description = _(u'current class')
 
-    @property
     def current_school(self):
         """ Returns current school.
         """
         study = StudyRelation.objects.filter(
                 student=self).order_by('entered')[0]
         return study.school
+    current_school.short_description = _(u'current school')
 
     def change_school(self, school, date=None):
         """ Marks, that student from ``date`` study in ``school``.
@@ -141,6 +148,10 @@ class Student(Human):
         study.entered = date
         study.save()
 
+    class Meta(object):
+        verbose_name=_(u'student')
+        verbose_name_plural=_(u'students')
+
 
 class StudyRelation(models.Model):
     """ Relationship between student and school.
@@ -148,22 +159,28 @@ class StudyRelation(models.Model):
 
     student = models.ForeignKey(
             Student,
+            verbose_name=_(u'student'),
             )
 
     school = models.ForeignKey(
             School,
+            verbose_name=_(u'school'),
             )
 
     entered = models.DateField(
+            verbose_name=_(u'entered'),
             )
 
     finished = models.DateField(
             blank=True,
             null=True,
+            verbose_name=_(u'finished'),
             )
 
     class Meta(object):
         ordering = [u'student', u'entered',]
+        verbose_name=_(u'study relation')
+        verbose_name_plural=_(u'study relations')
 
     def __unicode__(self):
         return u'{0.school} ({0.entered}; {0.finished})'.format(self)
@@ -175,24 +192,32 @@ class Alumni(models.Model):
 
     student = models.OneToOneField(
             Student,
+            verbose_name=_(u'student'),
             )
 
     university = models.CharField(
             max_length=128,
             blank=True,
             null=True,
+            verbose_name=_(u'university'),
             )
 
     study_field = models.CharField(
             max_length=64,
             blank=True,
             null=True,
+            verbose_name=_(u'study field'),
             )
 
     notes = models.TextField(
             blank=True,
             null=True,
+            verbose_name=_(u'notes'),
             )
+
+    class Meta(object):
+        verbose_name=_(u'alumni')
+        verbose_name_plural=_(u'alumnis')
 
 
 class StudentMark(models.Model):
@@ -201,13 +226,17 @@ class StudentMark(models.Model):
 
     student = models.ForeignKey(
             Student,
+            verbose_name=_(u'student'),
             )
 
-    start = models.DateField()
+    start = models.DateField(
+            verbose_name=_(u'start'),
+            )
 
     end = models.DateField(
             blank=True,
             null=True,
+            verbose_name=_(u'end'),
             )
 
     def __unicode__(self):
@@ -221,6 +250,10 @@ class SocialDisadvantageMark(StudentMark):
     """ Mark student as socially disadvantaged.
     """
 
+    class Meta(object):
+        verbose_name=_(u'social disadvantage mark')
+        verbose_name_plural=_(u'social disadvantage marks')
+
 
 class DisabilityMark(StudentMark):
     """ Mark student as having disability.
@@ -228,7 +261,12 @@ class DisabilityMark(StudentMark):
 
     disability = models.CharField(
             max_length=128,
+            verbose_name=_(u'disability'),
             )
+
+    class Meta(object):
+        verbose_name=_(u'disability mark')
+        verbose_name_plural=_(u'disability marks')
 
 
 class ParentRelation(models.Model):
@@ -243,16 +281,23 @@ class ParentRelation(models.Model):
     child = models.ForeignKey(
             Student,
             related_name='+',
+            verbose_name=_(u'child'),
             )
 
     parent = models.ForeignKey(
             Human,
+            verbose_name=_(u'parent'),
             )
 
     relation_type = models.CharField(
             max_length=2,
             choices=RELATION_TYPE,
+            verbose_name=_(u'type'),
             )
 
     def __unicode__(self):
-        return u'{0.parent} -> {0.student}'.format(self)
+        return u'{0.parent} -> {0.child}'.format(self)
+
+    class Meta(object):
+        verbose_name=_(u'parent relation')
+        verbose_name_plural=_(u'parent relations')
