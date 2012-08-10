@@ -51,6 +51,10 @@ class ParentRelationInline(admin.TabularInline):
 
     model = models.ParentRelation
     extra = 0
+    raw_id_fields = [
+            'child',
+            'parent',
+            ]
 
 
 class AlumniInline(admin.StackedInline):
@@ -173,6 +177,11 @@ class ParentRelationAdmin(utils.ModelAdmin):
             'parent__first_name',
             'parent__last_name',
             'parent__old_last_name',
+            ]
+
+    raw_id_fields = [
+            'child',
+            'parent',
             ]
 
 
