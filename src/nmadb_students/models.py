@@ -186,13 +186,86 @@ class StudyRelation(models.Model):
         return u'{0.school} ({0.entered}; {0.finished})'.format(self)
 
 
+class Diploma(models.Model):
+    """ Information about the diploma that the student has received,
+    when he finished, if any.
+    """
+
+    DIPLOMA_TYPE = (
+            (u'N', _(u'nothing')),
+            (u'P', _(u'certificate')),
+            (u'D', _(u'diploma')),
+            (u'DP', _(u'diploma with honour')),
+            )
+
+    tasks_solved = models.PositiveSmallIntegerField(
+            verbose_name=_(u'how many tasks solved'),
+            )
+
+    hours = models.DecimalField(
+            max_digits=6,
+            decimal_places=2,
+            verbose_name=_(u'hours'),
+            )
+
+    diploma_type = models.CharField(
+            max_length=3,
+            choices=DIPLOMA_TYPE,
+            verbose_name=_(u'type'),
+            )
+
+    number = models.PositiveSmallIntegerField(
+            verbose_name=_(u'number'),
+            )
+
+    class Meta(object):
+        verbose_name=_(u'diploma')
+        verbose_name_plural=_(u'diplomas')
+
+
 class Alumni(models.Model):
     """ Information about alumni.
     """
 
+    INTEREST_LEVEL = (
+            # Not tried to contact.
+            ( 0, _(u'not tried to contact')),
+            # Tried to contact, no response.
+            (11, _(u'no response')),
+            # Tried to contact, responded.
+            (21, _(u'not interested')),
+            (22, _(u'friend')),
+            (23, _(u'helpmate')),
+            (24, _(u'regular helpmate')),
+            )
+
     student = models.OneToOneField(
             Student,
             verbose_name=_(u'student'),
+            )
+
+    activity_fields = models.TextField(
+            blank=True,
+            null=True,
+            verbose_name=_(u'fields'),
+            help_text=_(
+                u'Alumni reported that he can help in these activity '
+                u'fields.'
+                ),
+            )
+
+    interest_level = models.PositiveSmallIntegerField(
+            blank=True,
+            null=True,
+            choices=INTEREST_LEVEL,
+            verbose_name=_(u'interest level'),
+            )
+
+    abilities = models.TextField(
+            blank=True,
+            null=True,
+            verbose_name=_(u'abilities'),
+            help_text=_(u'Main abilities and interests.')
             )
 
     university = models.CharField(
@@ -200,6 +273,7 @@ class Alumni(models.Model):
             blank=True,
             null=True,
             verbose_name=_(u'university'),
+            help_text=_(u'Or work place.'),
             )
 
     study_field = models.CharField(
@@ -207,6 +281,17 @@ class Alumni(models.Model):
             blank=True,
             null=True,
             verbose_name=_(u'study field'),
+            help_text=_(u'Or employment field.'),
+            )
+
+    info_change_year = models.IntegerField(
+            blank=True,
+            null=True,
+            verbose_name=_(u'info change year'),
+            help_text=_(
+                u'Year when the information about studies '
+                u'will become invalid.'
+                ),
             )
 
     notes = models.TextField(
@@ -215,9 +300,20 @@ class Alumni(models.Model):
             verbose_name=_(u'notes'),
             )
 
+    information_received_timestamp = models.DateTimeField(
+            blank=True,
+            null=True,
+            verbose_name=_(u'information received timestamp'),
+            )
+
     class Meta(object):
         verbose_name=_(u'alumni')
         verbose_name_plural=_(u'alumnis')
+
+    def contactable(self):
+        """ If the alumni agreed to receive information.
+        """
+        return self.interest_level >= 22;
 
 
 class StudentMark(models.Model):
