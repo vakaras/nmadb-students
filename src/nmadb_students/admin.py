@@ -141,6 +141,32 @@ class AlumniAdmin(utils.ModelAdmin):
             )
 
 
+class DiplomaAdmin(utils.ModelAdmin):
+    """ Administration for diplomas.
+    """
+
+    list_display = (
+            'id',
+            'student',
+            'diploma_type',
+            'number',
+            'tasks_solved',
+            'hours',
+            )
+
+    search_fields = (
+            'id',
+            'student__first_name',
+            'student__last_name',
+            'student__old_last_name',
+            'number',
+            )
+
+    filter_fields = (
+            'diploma_type',
+            )
+
+
 class StudentMarkAdmin(utils.ModelAdmin):
     """ Administration for StudentMark.
     """
@@ -190,5 +216,6 @@ admin.site.register(models.Student, StudentAdmin)
 admin.site.register(models.ParentRelation, ParentRelationAdmin)
 admin.site.register(models.StudyRelation, StudyRelationAdmin)
 admin.site.register(models.Alumni, AlumniAdmin)
+admin.site.register(models.Diploma, DiplomaAdmin)
 admin.site.register(models.SocialDisadvantageMark, StudentMarkAdmin)
 admin.site.register(models.DisabilityMark, StudentMarkAdmin)
