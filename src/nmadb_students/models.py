@@ -198,6 +198,11 @@ class Diploma(models.Model):
             (u'DP', _(u'diploma with honour')),
             )
 
+    student = models.OneToOneField(
+            Student,
+            verbose_name=_(u'student'),
+            )
+
     tasks_solved = models.PositiveSmallIntegerField(
             verbose_name=_(u'how many tasks solved'),
             )

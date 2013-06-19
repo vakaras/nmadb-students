@@ -11,6 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'Diploma'
         db.create_table('nmadb_students_diploma', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('student', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['nmadb_students.Student'], unique=True)),
             ('tasks_solved', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
             ('hours', self.gf('django.db.models.fields.DecimalField')(max_digits=6, decimal_places=2)),
             ('diploma_type', self.gf('django.db.models.fields.CharField')(max_length=3)),
@@ -111,6 +112,7 @@ class Migration(SchemaMigration):
             'hours': ('django.db.models.fields.DecimalField', [], {'max_digits': '6', 'decimal_places': '2'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'number': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'student': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['nmadb_students.Student']", 'unique': 'True'}),
             'tasks_solved': ('django.db.models.fields.PositiveSmallIntegerField', [], {})
         },
         'nmadb_students.disabilitymark': {
