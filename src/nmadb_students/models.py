@@ -186,6 +186,7 @@ class StudyRelation(models.Model):
         return u'{0.school} ({0.entered}; {0.finished})'.format(self)
 
 
+# FIXME: Diploma should belong to academic, not student.
 class Diploma(models.Model):
     """ Information about the diploma that the student has received,
     when he finished, if any.
