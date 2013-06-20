@@ -204,10 +204,14 @@ class Diploma(models.Model):
             )
 
     tasks_solved = models.PositiveSmallIntegerField(
+            blank=True,
+            null=True,
             verbose_name=_(u'how many tasks solved'),
             )
 
     hours = models.DecimalField(
+            blank=True,
+            null=True,
             max_digits=6,
             decimal_places=2,
             verbose_name=_(u'hours'),
