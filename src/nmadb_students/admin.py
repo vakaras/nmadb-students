@@ -162,7 +162,7 @@ class DiplomaAdmin(utils.ModelAdmin):
             'number',
             )
 
-    filter_fields = (
+    list_filter = (
             'diploma_type',
             )
 
