@@ -141,6 +141,38 @@ class AlumniAdmin(utils.ModelAdmin):
             )
 
 
+class YearFilter(admin.SimpleListFilter):
+    """ Allows to filter by date left.
+    """
+
+    title = _(u'year left')
+    parameter_name = 'year_left'
+
+    def lookups(self, request, model_admin):
+        """ Returns the list of years.
+        """
+        from nmadb_academics.models import Academic
+        left = Academic.objects.exclude(left__isnull=True)
+        first = left.order_by('left')[0]
+        last = left.order_by('-left')[0]
+        for year in range(first.left.year, last.left.year + 1):
+            yield (unicode(year), unicode(year))
+
+    def queryset(self, request, queryset):
+        """ Returns filtered by year.
+        """
+        try:
+            year = int(self.value())
+        except (ValueError, TypeError):
+            return queryset
+        else:
+            from datetime import date
+            return queryset.filter(
+                    student__academic__left__gte=date(year, 1, 1),
+                    student__academic__left__lte=date(year, 12, 31),
+                    )
+
+
 class DiplomaAdmin(utils.ModelAdmin):
     """ Administration for diplomas.
     """
@@ -164,6 +196,7 @@ class DiplomaAdmin(utils.ModelAdmin):
 
     list_filter = (
             'diploma_type',
+            YearFilter,
             )
 
 
