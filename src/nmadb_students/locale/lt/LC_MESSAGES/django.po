@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Vytautas Astrauskas <vastrauskas@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 15:12+0300\n"
-"PO-Revision-Date: 2012-08-04 15:12+0300\n"
+"POT-Creation-Date: 2013-06-23 12:50+0000\n"
+"PO-Revision-Date: 2013-06-23 15:54+0300\n"
 "Last-Translator: Vytautas Astrauskas <vastrauskas@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language-Team: FIXME\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.0\n"
 
 #: admin.py:31
 msgid "ID"
@@ -41,13 +41,17 @@ msgstr "Savivaldybė"
 msgid "Municipality code"
 msgstr "Savivaldybės kodas"
 
-#: admin.py:85
+#: admin.py:89
 msgid "Class"
 msgstr "Klasė"
 
-#: admin.py:86
+#: admin.py:90
 msgid "School"
 msgstr "Mokykla"
+
+#: admin.py:148
+msgid "year left"
+msgstr "baigimo metai"
 
 #: models.py:18
 msgid "primary"
@@ -74,7 +78,8 @@ msgid "title"
 msgstr "pavadinimas"
 
 #: models.py:35
-#: models.py:295
+#: models.py:224
+#: models.py:401
 msgid "type"
 msgstr "tipas"
 
@@ -121,8 +126,9 @@ msgstr "dabartinė mokykla"
 
 #: models.py:152
 #: models.py:162
-#: models.py:195
-#: models.py:229
+#: models.py:204
+#: models.py:254
+#: models.py:335
 msgid "student"
 msgstr "mokinys"
 
@@ -146,72 +152,169 @@ msgstr "mokymasis"
 msgid "study relations"
 msgstr "mokymasis"
 
-#: models.py:202
+#: models.py:196
+msgid "nothing"
+msgstr "nieko"
+
+#: models.py:197
+msgid "certificate"
+msgstr "pažymėjimas"
+
+#: models.py:198
+#: models.py:232
+msgid "diploma"
+msgstr "diplomas"
+
+#: models.py:199
+msgid "diploma with honour"
+msgstr "diplomas su pagyrimu"
+
+#: models.py:210
+msgid "how many tasks solved"
+msgstr "kiek užduočių išsprendė"
+
+#: models.py:218
+msgid "hours"
+msgstr "valandos"
+
+#: models.py:228
+msgid "number"
+msgstr "numeris"
+
+#: models.py:233
+msgid "diplomas"
+msgstr "diplomai"
+
+#: models.py:242
+msgid "not tried to contact"
+msgstr "nebuvo bandoma susisiekti"
+
+#: models.py:244
+msgid "no response"
+msgstr "neatsakė"
+
+#: models.py:246
+msgid "not interested"
+msgstr "nesidomi"
+
+#: models.py:247
+msgid "friend"
+msgstr "bičiulis"
+
+#: models.py:248
+msgid "helpmate"
+msgstr "pagalbininkas"
+
+#: models.py:249
+msgid "regular helpmate"
+msgstr "nuolatinis pagalbininkas"
+
+#: models.py:260
+msgid "fields"
+msgstr "laukai"
+
+#: models.py:262
+msgid "Alumni reported that he can help in these activity fields."
+msgstr "Alumnis nurodė, kad gali padėti šiose srityse."
+
+#: models.py:271
+msgid "interest level"
+msgstr "domėjimosi lygis"
+
+#: models.py:277
+msgid "abilities"
+msgstr "sugebėjimai"
+
+#: models.py:278
+msgid "Main abilities and interests."
+msgstr "Pagrindiniai sugebėjimai ir pomėgiai"
+
+#: models.py:285
 msgid "university"
 msgstr "universitetas"
 
-#: models.py:209
+#: models.py:286
+msgid "Or work place."
+msgstr "Arba darbo vieta."
+
+#: models.py:293
 msgid "study field"
 msgstr "studijų sritis"
 
-#: models.py:215
+#: models.py:294
+msgid "Or employment field."
+msgstr "Arba darbo sritis."
+
+#: models.py:300
+msgid "info change year"
+msgstr "informacijos pasikeitimo metai"
+
+#: models.py:302
+msgid "Year when the information about studies will become invalid."
+msgstr "Metai kada informacija apie studijas taps neteisinga."
+
+#: models.py:310
 msgid "notes"
 msgstr "pastabos"
 
-#: models.py:219
+#: models.py:316
+msgid "information received timestamp"
+msgstr "laikas kada informacija buvo gauta"
+
+#: models.py:320
 msgid "alumni"
 msgstr "absolventas"
 
-#: models.py:220
+#: models.py:321
 msgid "alumnis"
 msgstr "absolventai"
 
-#: models.py:233
+#: models.py:339
 msgid "start"
 msgstr "pradžia"
 
-#: models.py:239
+#: models.py:345
 msgid "end"
 msgstr "pabaiga"
 
-#: models.py:254
+#: models.py:360
 msgid "social disadvantage mark"
 msgstr "socialinio remtinumo požymis"
 
-#: models.py:255
+#: models.py:361
 msgid "social disadvantage marks"
 msgstr "socialinio remtinumo požymiai"
 
-#: models.py:264
+#: models.py:370
 msgid "disability"
 msgstr "negalia"
 
-#: models.py:268
+#: models.py:374
 msgid "disability mark"
 msgstr "negalios požymis"
 
-#: models.py:269
+#: models.py:375
 msgid "disability marks"
 msgstr "negalių požymiai"
 
-#: models.py:277
-#: models.py:289
+#: models.py:383
+#: models.py:395
 msgid "parent"
 msgstr "tėvas"
 
-#: models.py:278
+#: models.py:384
 msgid "tutor"
 msgstr "globėjas"
 
-#: models.py:284
+#: models.py:390
 msgid "child"
 msgstr "vaikas"
 
-#: models.py:302
+#: models.py:408
 msgid "parent relation"
 msgstr "tėvystės ryšys"
 
-#: models.py:303
+#: models.py:409
 msgid "parent relations"
 msgstr "tėvystės ryšiai"
 
